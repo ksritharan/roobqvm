@@ -5965,6 +5965,7 @@ char map[ MAX_QPATH ];
 char number[2] = {""};
 int mode = 2;
 int i = 0;
+
  while(Q_stricmp( ent->client->pers.guid, g_admin_admins[ i ]->guid ))
  {
   if(!Q_stricmp( ent->client->pers.guid, g_admin_admins[ i ]->guid ))
@@ -5991,7 +5992,7 @@ if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_EVENTORGANIZER ) ) )
    trap_Cvar_Set( "g_shove", "50" );
    trap_Cvar_Set( "g_knockback", "600" );
    trap_Cvar_Set( "g_devmapNoGod", "0" );
-   trap_Cvar_Set( "g_devmapNoStructDmg", "0" );
+   trap_Cvar_Set( "g_devmapNoStructDmg", "1" );
    trap_Cvar_Set( "g_alienBuildPoints", "99999" );
    trap_Cvar_Set( "g_humanBuildPoints", "99999" );
    trap_Cvar_Set( "g_alienStage", "2" ); // 0 means stage 1
@@ -6005,7 +6006,7 @@ if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_EVENTORGANIZER ) ) )
    trap_Cvar_Set( "g_shove", "50" );
    trap_Cvar_Set( "g_knockback", "1000" );
    trap_Cvar_Set( "g_devmapNoGod", "1" );
-   trap_Cvar_Set( "g_devmapNoStructDmg", "1" );
+   trap_Cvar_Set( "g_devmapNoStructDmg", "0" );
    trap_Cvar_Set( "g_alienBuildPoints", "100" );
    trap_Cvar_Set( "g_humanBuildPoints", "100" );
    trap_Cvar_Set( "g_alienStage", "0" ); // 0 means stage 1
@@ -6017,7 +6018,7 @@ if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_EVENTORGANIZER ) ) )
     ADMP( va( "^7invalid map name '%s'\n", map ) );
     return qfalse;
   }
-    trap_SendConsoleCommand( EXEC_APPEND, va( "devmap %s", map ) );
+    trap_SendConsoleCommand( EXEC_APPEND, va( "devmap %s RantWrestle", map ) );
   level.restarted = qtrue;
   G_SayArgv( 2 + skiparg, number, sizeof( number ) );
 
@@ -6037,7 +6038,7 @@ if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_EVENTORGANIZER ) ) )
    trap_Cvar_Set( "g_shove", "50" );
    trap_Cvar_Set( "g_knockback", "600" );
    trap_Cvar_Set( "g_devmapNoGod", "0" );
-   trap_Cvar_Set( "g_devmapNoStructDmg", "0" );
+   trap_Cvar_Set( "g_devmapNoStructDmg", "1" );
    trap_Cvar_Set( "g_alienBuildPoints", "99999" );
    trap_Cvar_Set( "g_humanBuildPoints", "99999" );
    trap_Cvar_Set( "g_alienStage", "2" ); // 0 means stage 1
@@ -6050,7 +6051,7 @@ if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_EVENTORGANIZER ) ) )
    trap_Cvar_Set( "g_shove", "50" );
    trap_Cvar_Set( "g_knockback", "1000" );
    trap_Cvar_Set( "g_devmapNoGod", "1" );
-   trap_Cvar_Set( "g_devmapNoStructDmg", "1" );
+   trap_Cvar_Set( "g_devmapNoStructDmg", "0" );
    trap_Cvar_Set( "g_alienBuildPoints", "100" );
    trap_Cvar_Set( "g_humanBuildPoints", "100" );
    trap_Cvar_Set( "g_alienStage", "0" ); // 0 means stage 1
