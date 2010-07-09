@@ -5894,12 +5894,12 @@ qboolean G_admin_listplayersranks( gentity_t *ent, int skiparg )
 {
   int i;
   int j = 0;
+  char ranks[1000];
     
   ADMP( va( "^3!listplayersranks^7: %d players with ranks connected:\n",
     level.numConnectedClients ) );
   for( i = 0; i < level.numConnectedClients; i++ )
-  {
-	char ranks[1000];
+  {		
    if(strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_ELITE ) ))
    {
 	   strcat(ranks, " E>");
@@ -5953,7 +5953,8 @@ qboolean G_admin_listplayersranks( gentity_t *ent, int skiparg )
                i,
                g_admin_admins[ i ]->name,
 			   ranks
-             ) );		
+             ) );	
+		ranks[ 0 ] = '\0';
   }
 	return qtrue;
 }
@@ -5963,9 +5964,9 @@ char map[ MAX_QPATH ];
 char number[2] = {""};
 int mode = 2;
 int i = 0;
- while(!Q_stricmp( ent->client->pers.guid, g_admin_admins[ i ]->guid ))
+ while(Q_stricmp( ent->client->pers.guid, g_admin_admins[ i ]->guid ))
  {
-  if(Q_stricmp( ent->client->pers.guid, g_admin_admins[ i ]->guid ))
+  if(!Q_stricmp( ent->client->pers.guid, g_admin_admins[ i ]->guid ))
   break;
   else
   {
@@ -5996,7 +5997,7 @@ if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_EVENTORGANIZER ) ) )
    trap_Cvar_Set( "g_humanStage", "2" ); // 1 means stage 2 etc.
    return qtrue;
   }
-  if( map [ 0 ] == '0' )
+  if( map[ 0 ] == '0' )
   {
    AP( "print \"^3NormalMode:""\n");
    trap_Cvar_Set( "g_gravity", "800" );
