@@ -5902,26 +5902,27 @@ qboolean G_admin_listranks( gentity_t *ent, int skiparg )
 
 qboolean G_admin_listplayersranks( gentity_t *ent, int skiparg )
 {
-  int i;
+  int i = 0;
   int j = 0;
+  int k = 0;
+  int count = 0;
   char ranks[1000] = {""};
   gclient_t *client;
     
-  ADMP( va( "^3!listplayersranks^7: %d players connected:\n",
-    level.numConnectedClients ) );
+  ADMP( "^3!listplayersranks^7: listing players with ranks \n");
 
   
   for( i = 0; i < MAX_ADMIN_ADMINS && g_admin_admins[ i ]; i++ )
   {
   
-  for( i = 0; i < level.maxclients; i++ )
+  for( k = 0; k < level.maxclients; k++ )
   {
-   client = &level.clients[ i ];
+   client = &level.clients[ k ];
    if( Q_stricmp( client->pers.guid, g_admin_admins[ i ]->guid ) == 0)
    {
 
     if( client->pers.connected == CON_CONNECTING || client->pers.connected == CON_CONNECTED ) 
-    {
+    {		
 	   if(strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_ELITE ) ))
 	   {
 		   strcat(ranks, " E>");
@@ -5972,11 +5973,11 @@ qboolean G_admin_listplayersranks( gentity_t *ent, int skiparg )
 			j++;
 		}
 
-		ADMP( va( "%i ^7%s ^7%s^7\n", i, g_admin_admins[ i ]->name, ranks ) );	
+		ADMP( va( "%i ^7%s ^7%s^7\n", count, g_admin_admins[ i ]->name, ranks ) );	
 		ranks[0] = '\0';
 		j = 0;		
 
-
+		count++;
 	   }
     }
    }
