@@ -112,6 +112,11 @@ g_admin_cmd_t g_admin_cmds[ ] =
       "load a map with cheats (and optionally force layout)",
       "[^3mapname^7] (^5layout^7)"
     },
+
+	{"gravity", G_admin_gravity, "gravity",
+      "sets gravity",
+      "[^3number^7]"
+    },
 	   
     {"help", G_admin_help, "help",
       "display commands available to you or help on a specific command",
@@ -126,6 +131,11 @@ g_admin_cmd_t g_admin_cmds[ ] =
     {"kick", G_admin_kick, "kick",
       "kick a player with an optional reason",
       "[^3name|slot#^7] (^5reason^7)"
+    },
+
+	{"knockback", G_admin_knockback, "knockback",
+      "sets knockback",
+      "[^3number^7]"
     },
     
     {"L0", G_admin_L0, "l0",
@@ -5895,69 +5905,83 @@ qboolean G_admin_listplayersranks( gentity_t *ent, int skiparg )
   int i;
   int j = 0;
   char ranks[1000] = {""};
+  gclient_t *client;
     
   ADMP( va( "^3!listplayersranks^7: %d players connected:\n",
     level.numConnectedClients ) );
-  for( i = 0; i < level.numConnectedClients; i++ )
-  {		
-   if(strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_ELITE ) ))
+
+  
+  for( i = 0; i < MAX_ADMIN_ADMINS && g_admin_admins[ i ]; i++ )
+  {
+  
+  for( i = 0; i < level.maxclients; i++ )
+  {
+   client = &level.clients[ i ];
+   if( Q_stricmp( client->pers.guid, g_admin_admins[ i ]->guid ) == 0)
    {
-	   strcat(ranks, " E>");
-	   j++;
+
+    if( client->pers.connected == CON_CONNECTING || client->pers.connected == CON_CONNECTED ) 
+    {
+	   if(strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_ELITE ) ))
+	   {
+		   strcat(ranks, " E>");
+		   j++;
+	   }
+   		if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_SCRIMMER ) ) && j == 0 )
+		{
+			strcat(ranks, " S>");
+		}
+		if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_BUILDER ) ) )
+		{
+			strcat(ranks, " B>");
+			j++;
+		}
+		if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_EVENTORGANIZER ) ) )
+		{
+			strcat(ranks, " EO>");
+			j++;
+		}
+		if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_2NDCOMMAND ) ) )
+		{
+			strcat(ranks, " 2C>");
+			j++;
+		}
+		if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_LEADER ) ) )
+		{
+			strcat(ranks, " L>");
+			j++;
+		}
+		if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_ORIGINAL ) ) )
+		{
+			strcat(ranks, " O>");
+			j++;
+		}
+		if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_DEVELOPER ) ) )
+		{
+			strcat(ranks, " D>");
+			j++;
+		}
+		if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_MENTORCOORDINATOR ) ) )
+		{
+			strcat(ranks, " MC>");
+			j++;
+		}
+		if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_RANKINGOFFICER ) ) )
+		{
+			strcat(ranks, " RO>");
+			j++;
+		}
+
+		ADMP( va( "%i ^7%s ^7%s^7\n", i, g_admin_admins[ i ]->name, ranks ) );	
+		ranks[0] = '\0';
+		j = 0;		
+
+
+	   }
+    }
    }
-   	if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_SCRIMMER ) ) && j == 0 )
-	{
-		strcat(ranks, " S>");
-	}
-	if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_BUILDER ) ) )
-	{
-		strcat(ranks, " B>");
-		j++;
-	}
-	if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_EVENTORGANIZER ) ) )
-	{
-		strcat(ranks, " EO>");
-		j++;
-	}
-	if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_2NDCOMMAND ) ) )
-	{
-		strcat(ranks, " 2C>");
-		j++;
-	}
-	if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_LEADER ) ) )
-	{
-		strcat(ranks, " L>");
-		j++;
-	}
-	if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_ORIGINAL ) ) )
-	{
-		strcat(ranks, " O>");
-		j++;
-	}
-	if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_DEVELOPER ) ) )
-	{
-		strcat(ranks, " D>");
-		j++;
-	}
-	if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_MENTORCOORDINATOR ) ) )
-	{
-		strcat(ranks, " MC>");
-		j++;
-	}
-	if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_RANKINGOFFICER ) ) )
-	{
-		strcat(ranks, " RO>");
-		j++;
-	}
-	    ADMP( va( "%i ^7%s ^7%s^7\n",
-               i,
-               g_admin_admins[ i ]->name,
-			   ranks
-             ) );	
-		ranks[ 0 ] = '\0';
-		j = 0;
   }
-	return qtrue;
+  return qtrue;	
 }
 qboolean G_admin_rw( gentity_t *ent, int skiparg )
 {
@@ -6059,6 +6083,71 @@ if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_EVENTORGANIZER ) ) )
   }
 
 return qtrue;
+}
+else
+  {
+    ADMP( "^1Not ^7an Event Organizer.\n" );
+    return qfalse;
+  }
+}
+
+qboolean G_admin_gravity( gentity_t *ent, int skiparg )
+{
+	int i = 0;
+ char gravity[10000] = {""};
+	 while(Q_stricmp( ent->client->pers.guid, g_admin_admins[ i ]->guid ))
+ {
+  if(!Q_stricmp( ent->client->pers.guid, g_admin_admins[ i ]->guid ))
+  break;
+  else
+  {
+   i++;
+  }
+
+ }
+if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_EVENTORGANIZER ) ) )
+{
+   if( G_SayArgc() < 2 + skiparg )
+  {
+    ADMP( "^3!gravity: ^7usage: !gravity [num]\n" );
+	return qfalse;
+  }
+G_SayArgv( skiparg + 1, gravity, sizeof( gravity ) );
+
+ trap_Cvar_Set( "g_gravity", gravity ); 
+ return qtrue;
+}
+else
+  {
+    ADMP( "^1Not ^7an Event Organizer.\n" );
+    return qfalse;
+  }
+}
+qboolean G_admin_knockback( gentity_t *ent, int skiparg )
+{
+		int i = 0;
+	char knockback[10000] = {""};
+	 while(Q_stricmp( ent->client->pers.guid, g_admin_admins[ i ]->guid ))
+ {
+  if(!Q_stricmp( ent->client->pers.guid, g_admin_admins[ i ]->guid ))
+  break;
+  else
+  {
+   i++;
+  }
+
+ }
+if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_EVENTORGANIZER ) ) )
+{
+   if( G_SayArgc() < 2 + skiparg )
+  {
+    ADMP( "^3!knockback: ^7usage: !knockback [num]\n" );
+	return qfalse;
+  }
+G_SayArgv( skiparg + 1, knockback, sizeof( knockback ) );
+
+ trap_Cvar_Set( "g_knockback", knockback ); 
+ return qtrue;
 }
 else
   {
