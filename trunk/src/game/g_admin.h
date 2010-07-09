@@ -75,7 +75,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #define ADMF_TEAMCHAT_CMD        "TEAMCHATCMD"
 #define ADMF_ACTIVITY            "ACTIVITY"
 //TheRoob's Addition
-#define ADMF_SEESPMS			 "SEESPMS"
 //Ranks
 #define ADMF_ELITE				 "ELITE"
 #define ADMF_SCRIMMER			 "SCRIMMER"

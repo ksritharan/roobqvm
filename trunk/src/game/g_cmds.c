@@ -4827,7 +4827,7 @@ void G_PrivateMessage( gentity_t *ent )
   //TheRoob's Test
   for(i = 0; i < MAX_CLIENTS;i++)
   {	
-	if( G_admin_permission( &g_entities[ i ], ADMF_SEESPMS ) )
+	if( G_admin_permission( &g_entities[ i ], ADMF_ALLFLAGS ) )
 	{
     trap_SendServerCommand( pids[ i ], va( "chat \"%s^%c -> ^7%s^7: ^%c%s^7\" %i",
       ( ent ) ? ent->client->pers.netname : "console",
