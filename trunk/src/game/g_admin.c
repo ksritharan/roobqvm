@@ -5894,9 +5894,9 @@ qboolean G_admin_listplayersranks( gentity_t *ent, int skiparg )
 {
   int i;
   int j = 0;
-  char ranks[1000];
+  char ranks[1000] = {""};
     
-  ADMP( va( "^3!listplayersranks^7: %d players with ranks connected:\n",
+  ADMP( va( "^3!listplayersranks^7: %d players connected:\n",
     level.numConnectedClients ) );
   for( i = 0; i < level.numConnectedClients; i++ )
   {		
@@ -5955,6 +5955,7 @@ qboolean G_admin_listplayersranks( gentity_t *ent, int skiparg )
 			   ranks
              ) );	
 		ranks[ 0 ] = '\0';
+		j = 0;
   }
 	return qtrue;
 }
