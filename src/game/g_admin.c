@@ -5858,7 +5858,7 @@ qboolean G_admin_ranktest( gentity_t *ent, int skiparg )
 
 	if(count >= 1 && milcount == 1)
 	{
-	  AP( va( "print \"^3!ranktest: ^7%s^7 is %s^7 and %s^7.^7\n\"",
+	  AP( va( "print \"^3!ranktest: ^7%s^7 is%s^7 and%s^7.^7\n\"",
           ent->client->pers.netname,
 		  ranks,
 		  military
@@ -5867,14 +5867,14 @@ qboolean G_admin_ranktest( gentity_t *ent, int skiparg )
 	}
 	if(count >= 1 && milcount == 0)
 	{
-	  AP( va( "print \"^3!ranktest: ^7%s^7 is %s^7.^7\n\"",
+	  AP( va( "print \"^3!ranktest: ^7%s^7 is%s^7.^7\n\"",
           ent->client->pers.netname,
 		  ranks
 		  ));
 	}
 	if(count == 0 && milcount == 1)
 	{
-	  AP( va( "print \"^3!ranktest: ^7%s^7 is %s^7.^7\n\"",
+	  AP( va( "print \"^3!ranktest: ^7%s^7 is%s^7.^7\n\"",
           ent->client->pers.netname,
 		  military
 		  ));	
@@ -5889,14 +5889,13 @@ qboolean G_admin_ranktest( gentity_t *ent, int skiparg )
   }
 
 qboolean G_admin_listranks( gentity_t *ent, int skiparg )
-{	
-    ADMP( "\n" );
+{	    
     ADMP( "^3!listranks: ^712 available commands\n");
-    ADMP( "^3run !flag ^5[another player's name] ^7[rank] ^3To give them that rank you ^3must use all caps and no spaces.\n" );
+    ADMP( "^3run !flag ^5[another player's name] ^7[rank] ^3To give them that rank you ^3must use no spaces.\n" );
     ADMP( "^5Elite    Scrimmer    Builder    EventOrganizer    2ndCommand    \n" );
 	ADMP( "^5Leader  Original  Developer  MentorCoordinator  RankingOfficer  \n" );
 	ADMP( "^6Private  Corporal  Sergeant  SecondLieutenant  First Lieutenant \n" );
-	ADMP( "^6Captain  Major  Colonel LieutenantGeneral General of the Army   \n" );
+	ADMP( "^6Captain  Major  Colonel LieutenantGeneral GeneralofArmy   \n" );
 	return qtrue;
 }
 

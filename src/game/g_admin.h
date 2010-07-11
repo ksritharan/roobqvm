@@ -236,6 +236,8 @@ qboolean G_admin_ranktest( gentity_t *ent, int skiparg );
 qboolean G_admin_listranks( gentity_t *ent, int skiparg );
 qboolean G_admin_listplayersranks( gentity_t *ent, int skiparg );
 qboolean G_admin_rw( gentity_t *ent, int skiparg );
+qboolean G_admin_gravity( gentity_t *ent, int skiparg );
+qboolean G_admin_knockback( gentity_t *ent, int skiparg );
 
 void G_admin_print( gentity_t *ent, char *m );
 void G_admin_buffer_print( gentity_t *ent, char *m );
