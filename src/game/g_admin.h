@@ -98,7 +98,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #define ADMF_LIEUTENANTGENERAL	 "LIEUTENANTGENERAL"
 #define ADMF_GENERALOFARMY		 "GENERALOFARMY"	
 
-#define ADMF_IMMUTABLE           "IMMUTABLE"
+//#define ADMF_IMMUTABLE           "IMMUTABLE"
 #define ADMF_INCOGNITO           "INCOGNITO"
 #define ADMF_ADMINCHAT           "ADMINCHAT"
 #define ADMF_SEESFULLLISTPLAYERS "SEESFULLLISTPLAYERS"
@@ -238,6 +238,7 @@ qboolean G_admin_listplayersranks( gentity_t *ent, int skiparg );
 qboolean G_admin_rw( gentity_t *ent, int skiparg );
 qboolean G_admin_gravity( gentity_t *ent, int skiparg );
 qboolean G_admin_knockback( gentity_t *ent, int skiparg );
+qboolean G_admin_stage( gentity_t *ent, int skiparg );
 
 void G_admin_print( gentity_t *ent, char *m );
 void G_admin_buffer_print( gentity_t *ent, char *m );
