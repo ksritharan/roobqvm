@@ -38,7 +38,7 @@ static char g_bfb[ 32000 ];
 // note: list ordered alphabetically
 g_admin_cmd_t g_admin_cmds[ ] = 
   {
-    {"adjustban", G_admin_adjustban, "ban",
+    {"adjustban", G_admin_adjustban, "BAN",
       "change the duration or reason of a ban.  time is specified as numbers "
       "followed by units 'w' (weeks), 'd' (days), 'h' (hours) or 'm' (minutes),"
       " or seconds if no units are specified. if the duration is"
@@ -47,22 +47,22 @@ g_admin_cmd_t g_admin_cmds[ ] =
       "[^3ban#^7] (^5duration^7) (^5reason^7)"
     },
     
-    {"admintest", G_admin_admintest, "admintest",
+    {"admintest", G_admin_admintest, "ADMINTEST",
       "display your current admin level",
       ""
     },
 
-    {"allowbuild", G_admin_denybuild, "denybuild",
+    {"allowbuild", G_admin_denybuild, "DENYBUILD",
       "restore a player's ability to build",
       "[^3name|slot#^7]"
     },
     
-    {"allready", G_admin_allready, "allready",
+    {"allready", G_admin_allready, "ALLREADY",
       "makes everyone ready in intermission",
       ""
     },
 
-    {"ban", G_admin_ban, "ban",
+    {"ban", G_admin_ban, "BAN",
       "ban a player by IP and GUID with an optional expiration time and reason."
       "  time is specified as numbers followed by units 'w' (weeks), 'd' "
       "(days), 'h' (hours) or 'm' (minutes), or seconds if no units are "
@@ -70,234 +70,240 @@ g_admin_cmd_t g_admin_cmds[ ] =
       "[^3name|slot#|IP^7] (^5time^7) (^5reason^7)"
     },
 
-    {"buildlog", G_admin_buildlog, "buildlog",
+    {"buildlog", G_admin_buildlog, "BUILDLOG",
       "display a list of recent builds and deconstructs, optionally specifying"
       " a team",
       "(^5xnum^7) (^5#skip^7) (^5-name|num^7) (^5a|h^7)"
       "\n ^3Example:^7 '!buildlog #10 h' skips 10 events, then shows the previous 10 events affecting human buildables"
     },
 
-    {"cancelvote", G_admin_cancelvote, "cancelvote",
+    {"cancelvote", G_admin_cancelvote, "CANCELVOTE",
       "cancel a vote taking place",
       ""
     },
     
-    {"cp", G_admin_cp, "cp",
+    {"cp", G_admin_cp, "CP",
       "display a CP message to users, optionally specifying team(s) to send to",
       "(-AHS) [^3message^7]"
     },
 
-    {"denybuild", G_admin_denybuild, "denybuild",
+    {"denybuild", G_admin_denybuild, "DENYBUILD",
       "take away a player's ability to build",
       "[^3name|slot#^7]"
     },
 
-    {"designate", G_admin_designate, "designate",
+    {"designate", G_admin_designate, "DESIGNATE",
       "give the player designated builder privileges",
       "[^3name|slot#^7]"
     },
 
-    {"flag", G_admin_flag, "flag",
+    {"flag", G_admin_flag, "FLAG",
       "add an admin flag to a player, prefix flag with '-' to disallow the flag. "
       "console can use this command on admin levels by prefacing a '*' to the admin level value.",
       "[^3name|slot#|admin#|*adminlevel^7] (^5+^7|^5-^7)[^3flag^7]"
     },
 
-    {"flaglist", G_admin_flaglist, "flag",
+    {"flaglist", G_admin_flaglist, "FLAG",
       "list all flags understood by this server",
       ""
     },
     
-    {"devmap", G_admin_devmap, "devmap",
+    {"devmap", G_admin_devmap, "DEVMAP",
       "load a map with cheats (and optionally force layout)",
       "[^3mapname^7] (^5layout^7)"
     },
 
-	{"gravity", G_admin_gravity, "gravity",
+	{"gravity", G_admin_gravity, "GRAVITY",
       "sets gravity",
       "[^3number^7]"
     },
 	   
-    {"help", G_admin_help, "help",
+    {"help", G_admin_help, "HELP",
       "display commands available to you or help on a specific command",
       "(^5command^7)"
     },
 
-    {"info", G_admin_info, "info",
+    {"info", G_admin_info, "INFO",
       "display the contents of server info files",
       "(^5subject^7)"
     },
 
-    {"kick", G_admin_kick, "kick",
+    {"kick", G_admin_kick, "KICK",
       "kick a player with an optional reason",
       "[^3name|slot#^7] (^5reason^7)"
     },
 
-	{"knockback", G_admin_knockback, "knockback",
+	{"knockback", G_admin_knockback, "KNOCKBACK",
       "sets knockback",
       "[^3number^7]"
     },
     
-    {"L0", G_admin_L0, "l0",
+    {"L0", G_admin_L0, "L0",
       "Sets a level 1 to level 0",
       "[^3name|slot#^7]"
     },
     
-    {"L1", G_admin_L1, "l1",
+    {"L1", G_admin_L1, "L1",
       "Sets a level 0 to level 1",
       "[^3name|slot#^7]"
     },
     
-    {"layoutsave", G_admin_layoutsave, "layoutsave",
+    {"layoutsave", G_admin_layoutsave, "LAYOUTSAVE",
       "save a map layout",
       "[^3mapname^7]"
     },
     
-    {"listadmins", G_admin_listadmins, "listadmins",
+    {"listadmins", G_admin_listadmins, "LISTADMINS",
       "display a list of all server admins and their levels",
       "(^5name|start admin#^7) (^5minimum level to display^7)"
     },
     
-    {"listlayouts", G_admin_listlayouts, "listlayouts",
+    {"listlayouts", G_admin_listlayouts, "LISTLAYOUTS",
       "display a list of all available layouts for a map",
       "(^5mapname^7)"
     },
 
-    {"listplayers", G_admin_listplayers, "listplayers",
+    {"listplayers", G_admin_listplayers, "LISTPLAYERS",
       "display a list of players, their client numbers and their levels",
       ""
     },
 
-	{"listplayersranks", G_admin_listplayersranks, "listplayersranks",
+	{"listplayersranks", G_admin_listplayersranks, "LISTPLAYERSRANKS",
       "display the ranks of connected players",
       ""
     },
 
-	{"listranks", G_admin_listranks, "listranks",
+	{"listranks", G_admin_listranks, "LISTRANKS",
       "display the list of possible ranks",
       ""
     },
     
-    {"listmaps", G_admin_listmaps, "listmaps",
+    {"listmaps", G_admin_listmaps, "LISTMAPS",
       "display a list of available maps on the server",
       "(^5map name^7)"
     },
     
-    {"lock", G_admin_lock, "lock",
+    {"lock", G_admin_lock, "LOCK",
       "lock a team to prevent anyone from joining it",
       "[^3a|h^7]"
     },
     
-    {"map", G_admin_map, "map",
+    {"map", G_admin_map, "MAP",
       "load a map (and optionally force layout)",
       "[^3mapname^7] (^5layout^7)"
     },
 
-    {"maplog", G_admin_maplog, "maplog",
+    {"maplog", G_admin_maplog, "MAPLOG",
       "show recently played maps",
       ""
     },
 
-    {"mute", G_admin_mute, "mute",
+    {"mute", G_admin_mute, "MUTE",
       "mute a player",
       "[^3name|slot#^7]"
     },
     
-    {"namelog", G_admin_namelog, "namelog",
+    {"namelog", G_admin_namelog, "NAMELOG",
       "display a list of names used by recently connected players",
       "(^5name^7)"
     },
 
-    {"nextmap", G_admin_nextmap, "nextmap",
+    {"nextmap", G_admin_nextmap, "NEXTMAP",
       "go to the next map in the cycle",
       ""
     },
 
-    {"passvote", G_admin_passvote, "passvote",
+    {"passvote", G_admin_passvote, "PASSVOTE",
       "pass a vote currently taking place",
       ""
     },
     
-    {"pause", G_admin_pause, "pause",
+    {"pause", G_admin_pause, "PAUSE",
       "Pause (or unpause) the game.",
       ""
     },
 
 
-    {"putteam", G_admin_putteam, "putteam",
+    {"putteam", G_admin_putteam, "PUTTEAM",
       "move a player to a specified team",
       "[^3name|slot#^7] [^3h|a|s^7]"
     },
 //TheRoob's Addition
-	{"ranktest", G_admin_ranktest, "ranktest",
+	{"ranktest", G_admin_ranktest, "RANKTEST",
 	 "Displays your rank(s).",
 	 ""
 	},
 
-    {"readconfig", G_admin_readconfig, "readconfig",
+    {"readconfig", G_admin_readconfig, "READCONFIG",
       "reloads the admin config file and refreshes permission flags",
       ""
     },
     
-    {"register", G_admin_register, "register",
+    {"register", G_admin_register, "REGISTER",
       "Registers your name to protect it from being used by others or updates your admin name to your current name.",
       ""
     },
 
-    {"rename", G_admin_rename, "rename",
+    {"rename", G_admin_rename, "RENAME",
       "rename a player",
       "[^3name|slot#^7] [^3new name^7]"
     },
 
-    {"restart", G_admin_restart, "restart",
+    {"restart", G_admin_restart, "RESTART",
       "restart the current map (optionally using named layout or keeping/switching teams)",
       "(^5layout^7) (^5keepteams|switchteams|keepteamslock|switchteamslock^7)"
     },
 
-    {"revert", G_admin_revert, "revert",
+    {"revert", G_admin_revert, "REVERT",
       "revert one or more buildlog events, optionally of only one team",
       "(^5xnum^7) (^5#ID^7) (^5-name|num^7) (^5a|h^7)"
       "\n ^3Example:^7 '!revert x5 h' reverts the last 5 events affecting human buildables"
     },
 
-    {"rotation", G_admin_listrotation, "rotation",
+    {"rotation", G_admin_listrotation, "ROTATION",
        "display a list of maps that are in the active map rotation",
        ""
     },
 
-	{"rw", G_admin_rw, "rantwrestle",
+	{"rw", G_admin_rw, "RW",
        "Sets gamemode into rantwrestle or normal mode",
 	   "[^3mapname^7] (^51|0^7)"
     },
 
-    {"setlevel", G_admin_setlevel, "setlevel",
+    {"setlevel", G_admin_setlevel, "SETLEVEL",
       "sets the admin level of a player",
       "[^3name|slot#|admin#^7] [^3level^7]"
     },
 	//TheRoob's Addition
 
-	{"slap", G_admin_slap, "slap",
+	{"slap", G_admin_slap, "SLAP",
       "Do damage to a player, and send them flying",
       "[^3name|slot^7] (damage)"
     },
 
-    {"showbans", G_admin_showbans, "showbans",
+    {"showbans", G_admin_showbans, "SHOWBANS",
       "display a (partial) list of active bans",
       "(^5start at ban#^7) (^5name|IP|'-subnet'^7)"
     },
 
-    {"spec999", G_admin_spec999, "spec999",
+    {"spec999", G_admin_spec999, "SPEC999",
       "move 999 pingers to the spectator team",
       ""},
       
      //kev: a bit of a hack, but there is no real point to
      //creating a new admin flag for this, so i stole it from !help
-    {"specme", G_admin_putmespec, "specme",
+    {"specme", G_admin_putmespec, "SPECME",
         "moves you to the spectators",
     ""
     },
 
-    {"subnetban", G_admin_subnetban, "subnetban",
+    {"stage", G_admin_stage, "STAGE",
+        "Sets the stage for both teams",
+		"(^3#^7)"
+    },
+
+
+    {"subnetban", G_admin_subnetban, "SUBNETBAN",
       "Add or change a subnet mask on a ban",
       "[^3ban#^7] [^5CIDR mask^7]"
       "\n ^3Example:^7 '!subnetban 10 16' changes ban #10 to be a ban on XXX.XXX.*.*"
@@ -306,38 +312,38 @@ g_admin_cmd_t g_admin_cmds[ ] =
       "\n ^1WARNING:^7 Use of this command may make your admin.dat incompatible with other game.qvms"
     },
 
-    {"time", G_admin_time, "time",
+    {"time", G_admin_time, "TIME",
       "show the current local server time",
       ""},
 
-    {"unban", G_admin_unban, "ban",
+    {"unban", G_admin_unban, "BAN",
       "unbans a player specified by the slot as seen in showbans",
       "[^3ban#^7]"
     },
     
-    {"undesignate", G_admin_designate, "designate",
+    {"undesignate", G_admin_designate, "DESIGNATE",
       "revoke designated builder privileges",
       "[^3name|slot#^7]"
     },
     
-    {"unflag", G_admin_flag, "flag",
+    {"unflag", G_admin_flag, "FLAG",
       "clears an admin flag from a player. "
       "console can use this command on admin levels by prefacing a '*' to the admin level value.",
       "[^3name|slot#|admin#|*adminlevel^7] (^5+^7|^5-^7)[^3flag^7]"
     },
 
-    {"unlock", G_admin_unlock, "lock",
+    {"unlock", G_admin_unlock, "LOCK",
       "unlock a locked team",
       "[^3a|h^7]"
     },
     
-    {"unmute", G_admin_mute, "mute",
+    {"unmute", G_admin_mute, "MUTE",
       "unmute a muted player",
       "[^3name|slot#^7]"
     },
 
     {
-     "warn", G_admin_warn, "warn",
+     "warn", G_admin_warn, "WARN",
       "Warn a player to cease or face admin intervention",
       "[^3name|slot#^7] [reason]"
     }
@@ -529,8 +535,6 @@ static qboolean admin_higher_guid( char *admin_guid, char *victim_guid )
     if( !Q_stricmp( victim_guid, g_admin_admins[ i ]->guid ) )
     {
       if( alevel < g_admin_admins[ i ]->level )
-        return qfalse;
-      if( strstr( g_admin_admins[ i ]->flags, va( "%s", ADMF_IMMUTABLE ) ) )
         return qfalse;
     }
   }
@@ -744,40 +748,47 @@ static void admin_default_levels( void )
   Q_strncpyz( g_admin_levels[ 0 ]->name, "^4Unknown Player",
     sizeof( l->name ) );
   Q_strncpyz( g_admin_levels[ 0 ]->flags, 
-    "listplayers admintest help specme time register", 
+    "LISTPLAYERS ADMINTEST HELP SPECME TIME REGISTER", 
     sizeof( l->flags ) );
 
   Q_strncpyz( g_admin_levels[ 1 ]->name, "^5Server Regular",
     sizeof( l->name ) );
   Q_strncpyz( g_admin_levels[ 1 ]->flags, 
-    "listplayers admintest help specme time", 
+    "LISTPLAYERS ADMINTEST HELP SPECME TIME RANKTEST", 
     sizeof( l->flags ) );
 
   Q_strncpyz( g_admin_levels[ 2 ]->name, "^6Team Manager",
     sizeof( l->name ) );
   Q_strncpyz( g_admin_levels[ 2 ]->flags, 
-    "listplayers admintest help specme time putteam spec999 warn denybuild "
-	"register",
+    "LISTPLAYERS ADMINTEST HELP SPECME TIME PUTTEAM SPEC999 WARN DENYBUILD "
+	"REGISTER RANKTEST",
     sizeof( l->flags ) );
 
-  Q_strncpyz( g_admin_levels[ 3 ]->name, "^2Junior Admin",
+  Q_strncpyz( g_admin_levels[ 3 ]->name, "^2Member",
     sizeof( l->name ) );
   Q_strncpyz( g_admin_levels[ 3 ]->flags, 
-    "listplayers admintest help specme time putteam spec999 kick mute warn "
-    "denybuild ADMINCHAT SEESFULLLISTPLAYERS register",
+    "LISTPLAYERS ADMINTEST HELP SPECME TIME PUTTEAM SPEC999 KICK MUTE WARN "
+    "DENYBUILD ADMINCHAT SEESFULLLISTPLAYERS REGISTER RANKTEST",
     sizeof( l->flags ) );
 
-  Q_strncpyz( g_admin_levels[ 4 ]->name, "^3Senior Admin",
+  Q_strncpyz( g_admin_levels[ 4 ]->name, "^3Trusted Member",
     sizeof( l->name ) );
   Q_strncpyz( g_admin_levels[ 4 ]->flags, 
-    "listplayers admintest help specme time putteam spec999 kick mute showbans "
-    "ban namelog warn denybuild register setlevel ADMINCHAT SEESFULLLISTPLAYERS",
+    "LISTPLAYERS ADMINTEST HELP SPECME TIME PUTTEAM SPEC999 KICK MUTE SHOWBANS "
+	"RANKTEST BAN NAMELOG WARN DENYBUILD REGISTER SETLEVEL ADMINCHAT "
+	"SEESFULLLISTPLAYERS",
     sizeof( l->flags ) );
 
-  Q_strncpyz( g_admin_levels[ 5 ]->name, "^1Server Operator",
+  Q_strncpyz( g_admin_levels[ 998 ]->name, "^1Angel",
     sizeof( l->name ) );
-  Q_strncpyz( g_admin_levels[ 5 ]->flags, 
-    "ALLFLAGS -INCOGNITO -IMMUTABLE -DBUILDER -BANIMMUNITY",
+  Q_strncpyz( g_admin_levels[ 998 ]->flags, 
+    "ALLFLAGS -INCOGNITO -DBUILDER -BANIMMUNITY -RW -GRAVITY -KNOCKBACK",
+    sizeof( l->flags ) );
+
+    Q_strncpyz( g_admin_levels[ 999 ]->name, "^1G^5o^6d",
+    sizeof( l->name ) );
+  Q_strncpyz( g_admin_levels[ 999 ]->flags, 
+    "ALLFLAGS -DBUILDER",
     sizeof( l->flags ) );
 }
 
@@ -2117,7 +2128,7 @@ static AdminFlagListEntry_t adminFlagList[] =
   { ADMF_FORCETEAMCHANGE,      "team balance rules do not apply" },
   { ADMF_INCOGNITO,            "does not show as admin in !listplayers" },
   { ADMF_IMMUNITY,             "cannot be vote kicked or muted" },
-  { ADMF_IMMUTABLE,            "admin commands cannot be used on them" },
+  //{ ADMF_IMMUTABLE,            "admin commands cannot be used on them" },
   { ADMF_NOCENSORFLOOD,        "no flood protection" },
   { ADMF_NO_VOTE_LIMIT,        "vote limitations do not apply" },
   { ADMF_SEESFULLLISTPLAYERS,  "sees all info in !listplayers" },
@@ -2231,11 +2242,11 @@ qboolean G_admin_flag( gentity_t *ent, int skiparg )
     if( id < 0 )
       return qfalse;
 
-    if( ent && !admin_higher_guid( ent->client->pers.guid, g_admin_admins[ id ]->guid ) )
-    {
-      ADMP( va( "^3%s:^7 your intended victim has a higher admin level than you\n", cmd ) );
-      return qfalse;
-    }
+    //if( ent && !admin_higher_guid( ent->client->pers.guid, g_admin_admins[ id ]->guid ) )
+    //{
+    //  ADMP( va( "^3%s:^7 your intended victim has a higher admin level than you\n", cmd ) );
+    //  return qfalse;
+    //}
   }
 
   if( G_SayArgc() < 3 + skiparg )
@@ -6155,4 +6166,67 @@ else
     return qfalse;
   }
 }
+qboolean G_admin_stage( gentity_t *ent, int skiparg )
+{
+char stage_chr[ MAX_STRING_CHARS ];
+char team_chr[2];
+int minargc;
+int stage;
+int realStage;
+int maxStage = 2;
+int minStage = 0;
+qboolean tAliens = qtrue;
+qboolean tHumans = qtrue;
 
+minargc = 2 + skiparg;
+
+	if( G_SayArgc() < minargc )
+	{
+		ADMP( "^3!stage: ^7stage: !stage [a|h]/[1|2|3]\n" );
+		return qfalse;
+	}
+G_SayArgv( 1 + skiparg, team_chr, sizeof( team_chr ) );
+	if( team_chr[0] == 'a' )
+	{
+		G_SayArgv( 2 + skiparg, stage_chr, sizeof( stage_chr ) );
+		stage = atoi(stage_chr);
+		realStage = atoi(stage_chr);
+		stage -= 1;
+		tHumans = qfalse;
+	}
+	else if( team_chr[0] == 'h' )
+	{
+		G_SayArgv( 2 + skiparg, stage_chr, sizeof( stage_chr ) );
+		stage = atoi(stage_chr);
+		realStage = atoi(stage_chr);
+		stage -= 1;
+		tAliens = qfalse;
+	}
+	else
+	{
+		stage = atoi(team_chr);
+		realStage = atoi(team_chr);
+		stage -= 1;
+	}
+
+	if( (stage <= maxStage) && (stage >= minStage )  )
+	{	if(tAliens)
+		{	
+			trap_Cvar_Set( "g_alienStage", va( "%i",stage) );
+			ADMP( va( "^3!stage: ^7Aliens have been set to stage ^1%i^7!\n", realStage ) );
+		}
+		if(tHumans)
+		{
+			trap_Cvar_Set( "g_humanStage", va( "%i",stage) );
+			ADMP( va( "^3!stage: ^7Humans have been set to stage ^1%i^7!\n", realStage ) );
+		}
+		return qtrue;
+	}
+	else
+	{
+		ADMP("^1Invalid Value(s)!\n");
+		ADMP( "^3!stage: ^7stage: !stage [a|h]/[1|2|3]\n" );
+		return qfalse;
+
+	}
+}
