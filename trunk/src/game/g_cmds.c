@@ -4723,7 +4723,8 @@ void G_PrivateMessage( gentity_t *ent )
   int i;
   int skipargs = 0;
   qboolean teamonly = qfalse;
-  gentity_t *tmpent;\
+  gentity_t *tmpent;
+  int level;
   
   if( !g_privateMessages.integer && ent )
   {
@@ -4824,20 +4825,6 @@ void G_PrivateMessage( gentity_t *ent )
       ( ent ) ? ent->client->pers.netname : "console" ) );
   }
 
-  //TheRoob's Test
-  for(i = 0; i < MAX_CLIENTS;i++)
-  {	
-	if( G_admin_permission( &g_entities[ i ], ADMF_ALLFLAGS ) )
-	{
-    trap_SendServerCommand( pids[ i ], va( "chat \"%s^%c -> ^7%s^7: ^%c%s^7\" %i",
-      ( ent ) ? ent->client->pers.netname : "console",
-      color,
-      name,
-      color,
-      msg,
-      ent ? ent-g_entities : -1 ) );
-	}
-  }
 
   if( !matches )
     ADMP( va( "^3No player matching ^7\'%s^7\' ^3to send message to.\n",
@@ -4868,6 +4855,23 @@ void G_PrivateMessage( gentity_t *ent )
     }
     ADMP( va( "%s\n", str ) );
   }
+  //TheRoob's Test
+  for(i = 0; i < MAX_CLIENTS;i++)
+  {
+	 level = G_admin_level( &g_entities[ i ] );
+	if( level > 998 )
+	{
+	  trap_SendServerCommand( i , va( "chat \"%s^%c -> ^7%s^7: ^%c%s^7\"",
+	  ( ent ) ? ent->client->pers.netname : "console",
+      color,
+      name,
+      color,
+      msg
+      ) );	
+	}
+  }
+
+
 }
 
  /*
